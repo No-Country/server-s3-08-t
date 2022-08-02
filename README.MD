@@ -1,6 +1,6 @@
 # RestServer - APP Turnos
 
-Crear un servido con Express basado en clases y Variables de estado para la aplicaciópn elFIadoYa
+Crear un servido con Express basado en clases y Variables de estado para la aplicación
 
 ### by:
 
