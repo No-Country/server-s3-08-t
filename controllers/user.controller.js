@@ -23,7 +23,32 @@ const postUser = async (req = request, res = response) => {
   });
 };
 
+const putUser = async (req = request, res = response) => {
+  const { id } = req.params;
+
+  const { password, _id, dni, email, ...resto } = req.body;
+
+  const userUpdate = await User.findByIdAndUpdate(id, resto);
+
+  res.status(200).json({
+    msg: "Success Update",
+    userUpdate,
+  });
+};
+
+const deteleUser = async (req = request, res = response) => {
+  const { id } = req.params;
+  const userDelete = await User.findByIdAndUpdate(id, { state: false });
+
+  res.status(200).json({
+    msg: "Success Delete",
+    userDelete,
+  });
+};
+
 module.exports = {
   getUser,
   postUser,
+  putUser,
+  deteleUser,
 };
