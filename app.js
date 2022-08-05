@@ -1,2 +1,9 @@
-console.log("Hola Server - DigiTurno");
-console.info("Hola Server - DigiTurno");
+console.log("Hola Server - HealtConnect");
+
+require("dotenv").config();
+
+const Server = require("./models/server");
+
+const server = new Server();
+
+server.listen();
