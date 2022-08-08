@@ -16,13 +16,12 @@ router.get("/", getUser);
 router.post(
   "/",
   [
-    check("dni", "DNI is required").not().isEmpty(),
-    check("name", "Name is required").not().isEmpty(),
+    check("userName", "Name is required").not().isEmpty(),
+    check("password", "Password is required").not().isEmpty(),
     check(
       "password",
       "La contraseña es obligatoria y mayor a 6 caracteres"
     ).isLength({ min: 6 }),
-    check("email", "Email - Invalid format").isEmail(),
     validarCampos,
   ],
   postUser
