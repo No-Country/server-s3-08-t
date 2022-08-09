@@ -1,4 +1,5 @@
 const { request, response } = require("express");
+const generarToken = require("../helpers/generar.jwt");
 const Users = require("../models/users");
 
 const authController = async (req = request, res = response) => {
@@ -22,9 +23,12 @@ const authController = async (req = request, res = response) => {
         msg: "Contraseña incorrecta",
       });
     }
+    const token = await generarToken(user.id);
+    //const userAuth = req.userAuth;
     res.status(200).json({
       msg: "Succes",
       user,
+      token
     });
   } catch (error) {
     console.log(error);
