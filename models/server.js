@@ -9,6 +9,7 @@ class Server {
     this.userPath = "/api/user";
     this.patientPath = "/api/patient";
     this.authPath = "/api/auth";
+    this.doctorPath = "/api/doctor";
 
     // Conection BD
     this.connectionDB();
@@ -39,6 +40,7 @@ class Server {
     this.app.use(this.userPath, require("../routes/user.router"));
     this.app.use(this.patientPath, require("../routes/patient.router"));
     this.app.use(this.authPath, require("../routes/auth.router"));
+    this.app.use(this.doctorPath, require("../routes/doctor.router"));
   }
 
   listen() {
