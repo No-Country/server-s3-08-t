@@ -26,7 +26,7 @@ const postUser = async (req = request, res = response) => {
 const putUser = async (req = request, res = response) => {
   const { id } = req.params;
 
-  const { password, _id, dni, email, ...resto } = req.body;
+  const { password, _id, dni, ...resto } = req.body;
 
   const userUpdate = await User.findByIdAndUpdate(id, resto);
 

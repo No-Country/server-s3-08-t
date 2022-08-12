@@ -11,7 +11,7 @@ const PatientSchema = Schema(
       type: String,
       required: [true, "Name - This is a required field"],
     },
-    email: {
+    userEmail: {
       type: String,
       required: [true, "Email - This is a required field"],
       unique: true,
