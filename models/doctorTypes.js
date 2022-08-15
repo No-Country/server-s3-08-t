@@ -14,4 +14,11 @@ const doctorTypeSchema = Schema(
   }
 );
 
+// ! Redfinir Metodo toString para no retornar la version y la contraseña
+doctorTypeSchema.methods.toJSON = function () {
+  const { __v, _id, password, ...doctor } = this.toObject();
+  doctor.uid = _id;
+  return doctor;
+};
+
 module.exports = model("Type", doctorTypeSchema);

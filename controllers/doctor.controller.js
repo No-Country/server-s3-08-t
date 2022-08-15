@@ -1,34 +1,25 @@
 const { response, request } = require("express");
+const Doctors = require("../models/doctors");
 const Type = require("../models/doctorTypes");
 
 const getDoctor = async (req = request, res = response) => {
-  const doctorData = await Type.aggregate([
+  const userDoctor = await Doctors.aggregate([
     {
       $lookup: {
-        from: "doctors", // Revise (2)
-        let: {
-          asNameType: "$nameType", // Obtiene nombre del type (ginecologo, internista, etc) String
-        },
-        pipeline: [
-          // (2)
-          {
-            $match: {
-              $expr: {
-                $in: ["$$asNameType", "$type"], // $$ hace referencia a las variables dentro del let
-              },
-            },
-          },
-        ],
-        as: "Doctor Types", // filtro
+        from: "users", // Revise
+        localField: "dni", // Campo local en Patient
+        foreignField: "dni", // Condición
+        as: "user", // Alias
       },
     },
   ]);
-  if (!doctorData) {
+
+  if (!userDoctor) {
     res.status(400).json({
       msg: "No existe el usuario de este pasiente",
     });
   }
-  res.json({ doctorData });
+  res.json({ userDoctor });
 };
 
 module.exports = {

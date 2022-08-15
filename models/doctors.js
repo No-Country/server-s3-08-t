@@ -55,7 +55,7 @@ const DoctorSchema = Schema(
 
 // ! Redfinir Metodo toString para no retornar la version y la contraseña
 DoctorSchema.methods.toJSON = function () {
-  const { __v, _id, ...doctor } = this.toObject();
+  const { __v, _id, password, ...doctor } = this.toObject();
   doctor.uid = _id;
   return doctor;
 };
