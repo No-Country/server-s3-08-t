@@ -6,12 +6,13 @@ const Users = require("../models/users");
 
 const authController = async (req = request, res = response) => {
   const { userName, password, dni } = req.body;
-  let userFind = userName;
+
   try {
     const user = await Users.findOne({
       userName,
     });
-    console.log(user);
+
+    const { dni } = user;
 
     if (!user) {
       return res.status(400).json({
@@ -38,20 +39,21 @@ const authController = async (req = request, res = response) => {
     //   },
     // ]);
 
-    let pat;
-    let doc;
-    if (user.role == "USER_ROLE") {
-      pat = await Patients.findOne(dni);
+    let pat = null;
+    let doc = null;
+    if (user.role === "USER_ROLE") {
+      pat = await Patients.findOne({ dni });
+
       if (!pat) {
         return res.status(400).json({
-          msg: "Usuario no tiene Perfil",
+          msg: "Usuario no tiene Perfil de Paciente",
         });
       }
-    } else if (user.role == "DOCTOR_ROLE") {
-      doc = await Doctors.findOne(dni);
+    } else if (user.role === "DOCTOR_ROLE") {
+      doc = await Doctors.findOne({ dni });
       if (!doc) {
         return res.status(400).json({
-          msg: "Doctor no tiene Perfil",
+          msg: "Doctor no tiene Perfil de Doctor",
         });
       }
     }
