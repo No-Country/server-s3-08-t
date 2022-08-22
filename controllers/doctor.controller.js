@@ -16,7 +16,7 @@ const getDoctor = async (req = request, res = response) => {
 
   if (!userDoctor) {
     res.status(400).json({
-      msg: "No existe el usuario de este pasiente",
+      msg: "No existe el usuario de este paciente",
     });
   }
   res.json({ userDoctor });
