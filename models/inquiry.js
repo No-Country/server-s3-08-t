@@ -2,12 +2,12 @@ const { Schema, model, default: mongoose } = require("mongoose");
 
 const InquirySchema = Schema(
     {
-        Patient: {
+        patient: {
             type: Schema.Types.ObjectId,
             required: true,
             ref: 'Patients'
         },
-        Doctor: {
+        doctor: {
             type: Schema.Types.ObjectId,
             required: true,
             ref: 'Doctor'

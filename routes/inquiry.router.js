@@ -14,8 +14,8 @@ router.get("/", getAllInquiries);
 router.post(
     "/",
     [
-        check("Patient", 'Patient is required').not().isEmpty(),
-        check("Doctor", 'Doctor is required').not().isEmpty(),
+        check("patient", 'Patient is required').not().isEmpty(),
+        check("doctor", 'Doctor is required').not().isEmpty(),
         check("dateInquiry", 'Date is required').not().isDate(),
         check("created", 'Creation date is required').not().isDate(),
     ],
