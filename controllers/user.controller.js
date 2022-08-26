@@ -12,6 +12,12 @@ const postUser = async (req = request, res = response) => {
   const body = req.body;
   const user = new User(body);
 
+  if (user) {
+    res.status(400).json({
+      msg: "El usuario ya se encuentra registrado",
+    });
+  }
+
   // Password Encrypt
 
   // Send to Rep
