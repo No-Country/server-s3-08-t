@@ -41,10 +41,15 @@ const postPatient = async (req = request, res = response) => {
   // Send to Rep
   await patient.save();
 
-  res.status(201).json({
-    msg: "Create Patient - Success",
-    patient,
-  });
+  try {
+    res.status(201).json({
+      msg: "Create Patient - Success",
+      patient,
+    });
+  } catch (error) {
+    console.log("Error - No fue posible crear el paciente.");
+  }
+
 };
 
 const putPatient = async (req = request, res = response) => {
@@ -54,20 +59,30 @@ const putPatient = async (req = request, res = response) => {
 
   const patientUpdate = await Patient.findByIdAndUpdate(id, resto);
 
-  res.status(200).json({
-    msg: "Success Update",
-    patientUpdate,
-  });
+  try {
+    res.status(200).json({
+      msg: "Success Update",
+      patientUpdate,
+    });
+  } catch (error) {
+    console.log("Error - No fue posible subir los cambios.");
+  }
+
 };
 
 const detelePatient = async (req = request, res = response) => {
   const { id } = req.params;
   const patientDelete = await Patient.findByIdAndUpdate(id, { state: false });
 
-  res.status(200).json({
-    msg: "Success Delete",
-    patientDelete,
-  });
+  try {
+    res.status(200).json({
+      msg: "Success Delete",
+      patientDelete,
+    });
+  } catch (error) {
+    console.log("Error - No fue posible eliminar el paciente.");
+  }
+
 };
 
 module.exports = {

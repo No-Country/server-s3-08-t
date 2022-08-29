@@ -23,10 +23,14 @@ const postUser = async (req = request, res = response) => {
   // Send to Rep
   await user.save();
 
-  res.status(201).json({
-    msg: "Create User - Success",
-    user,
-  });
+  try {
+    res.status(201).json({
+      msg: "Create User - Success",
+      user,
+    });
+  } catch (error) {
+    console.log("Error - No fue posible crear al usuario.");
+  }
 };
 
 const putUser = async (req = request, res = response) => {
@@ -36,20 +40,29 @@ const putUser = async (req = request, res = response) => {
 
   const userUpdate = await User.findByIdAndUpdate(id, resto);
 
-  res.status(200).json({
-    msg: "Success Update",
-    userUpdate,
-  });
+  try {
+    res.status(200).json({
+      msg: "Success Update",
+      userUpdate,
+    });
+  } catch (error) {
+    console.log("Error - No fue posible modificar al usuario.");
+  }
+
 };
 
 const deteleUser = async (req = request, res = response) => {
   const { id } = req.params;
   const userDelete = await User.findByIdAndUpdate(id, { state: false });
 
-  res.status(200).json({
-    msg: "Success Delete",
-    userDelete,
-  });
+  try {
+    res.status(200).json({
+      msg: "Success Delete",
+      userDelete,
+    })
+  } catch (error) {
+    console.log("Error - No fue posible eliminar el usuario.");
+  }
 };
 
 module.exports = {
