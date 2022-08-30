@@ -2,9 +2,23 @@ const { response, request } = require("express");
 const Inquiry = require("../models/inquiry");
 
 const getInquiry = async (req = request, res = response) => {
-    const doctorInquiry = await Inquiry.aggregate([
-        
-    ])
+    const inquiry = await Inquiry.aggregate([
+        {
+            $lookup: {
+                from: "inquiries", // Revise
+                localField: "_id", // Campo local en Patient
+                foreignField: "_id", // Condición
+                as: "inquiry", // Alias
+            },
+        },
+    ]);
+
+    if(!inquiry) {
+        res.status(400).json({
+            msg: "No existe la cita.",
+        });
+    }
+    res.json({ userDoctor });
 }
 
 const postInquiry = async (req = request, res = response) => {
@@ -45,6 +59,7 @@ const getAllInquiries = async (req = request, res = response) => {
 }
 
 module.exports = {
+    getInquiry,
     postInquiry,
     deleteInquiry,
     getAllInquiries

@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
 const {
+    getInquiry,
     postInquiry,
     deleteInquiry,
     getAllInquiries
@@ -10,6 +11,8 @@ const validarCampos = require("../middlewares/validator");
 const router = Router();
 
 router.get("/", getAllInquiries);
+
+router.get("/get-inquiry", getInquiry);
 
 router.post(
     "/",
