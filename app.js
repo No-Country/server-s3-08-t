@@ -3,7 +3,6 @@ console.log("Hola Server - HealtConnect");
 require("dotenv").config();
 
 const doctors = require("./models/doctors");
-const doctorsPrueba = require("./models/doctorsPrueba");
 const Type = require("./models/doctorTypes");
 const Server = require("./models/server");
 

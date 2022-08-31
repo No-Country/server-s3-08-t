@@ -3,7 +3,7 @@ const { check } = require("express-validator");
 const {
   postPatient,
   putPatient,
-  detelePatient,
+  deletePatient,
   getPatient,
   getPatientUser,
 } = require("../controllers/patient.controller");
@@ -29,6 +29,6 @@ router.post(
 
 router.post("/:id", putPatient);
 
-router.delete("/:id", detelePatient);
+router.delete("/:id", deletePatient);
 
 module.exports = router;

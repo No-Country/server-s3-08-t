@@ -26,7 +26,7 @@ const getPatientUser = async (req = request, res = response) => {
     res.status(400).json({
       msg: "No existe el usuario de este paciente",
     });
-  }
+  };
   console.log(patientData);
   res.json({ patientData });
 };
@@ -48,7 +48,7 @@ const postPatient = async (req = request, res = response) => {
     });
   } catch (error) {
     console.log("Error - No fue posible crear el paciente.");
-  }
+  };
 
 };
 
@@ -66,11 +66,11 @@ const putPatient = async (req = request, res = response) => {
     });
   } catch (error) {
     console.log("Error - No fue posible subir los cambios.");
-  }
+  };
 
 };
 
-const detelePatient = async (req = request, res = response) => {
+const deletePatient = async (req = request, res = response) => {
   const { id } = req.params;
   const patientDelete = await Patient.findByIdAndUpdate(id, { state: false });
 
@@ -81,7 +81,7 @@ const detelePatient = async (req = request, res = response) => {
     });
   } catch (error) {
     console.log("Error - No fue posible eliminar el paciente.");
-  }
+  };
 
 };
 
@@ -89,6 +89,6 @@ module.exports = {
   getPatient,
   postPatient,
   putPatient,
-  detelePatient,
+  deletePatient,
   getPatientUser,
 };
