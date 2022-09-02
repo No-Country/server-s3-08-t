@@ -12,18 +12,12 @@ const postUser = async (req = request, res = response) => {
   const body = req.body;
   const user = new User(body);
 
-  if (user) {
-    res.status(400).json({
-      msg: "El usuario ya se encuentra registrado",
-    });
-  }
-
   // Password Encrypt
 
   // Send to Rep
-  await user.save();
 
   try {
+    await user.save();
     res.status(201).json({
       msg: "Create User - Success",
       user,
@@ -48,7 +42,6 @@ const putUser = async (req = request, res = response) => {
   } catch (error) {
     console.log("Error - No fue posible modificar al usuario.");
   }
-
 };
 
 const deteleUser = async (req = request, res = response) => {
@@ -59,7 +52,7 @@ const deteleUser = async (req = request, res = response) => {
     res.status(200).json({
       msg: "Success Delete",
       userDelete,
-    })
+    });
   } catch (error) {
     console.log("Error - No fue posible eliminar el usuario.");
   }

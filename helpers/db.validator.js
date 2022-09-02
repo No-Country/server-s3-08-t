@@ -9,6 +9,13 @@ const dniExiste = async (dni = "") => {
   }
 };
 
+const userNameExiste = async (userName = "") => {
+  const existe = await Users.findOne({ userName });
+  if (existe) {
+    throw new Error(`El userName ${userName} esta registrado en la DB`);
+  }
+};
+
 const dniExisteDoctor = async (dni = "") => {
   const existe = await Doctors.findOne({ dni });
   if (existe) {
@@ -27,4 +34,5 @@ module.exports = {
   dniExiste,
   dniExisteDoctor,
   dniExistePatient,
+  userNameExiste,
 };

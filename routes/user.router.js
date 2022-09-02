@@ -6,7 +6,7 @@ const {
   putUser,
   deteleUser,
 } = require("../controllers/user.controller");
-const { dniExiste } = require("../helpers/db.validator");
+const { dniExiste, userNameExiste } = require("../helpers/db.validator");
 const validarCampos = require("../middlewares/validator");
 
 const router = Router();
@@ -24,6 +24,7 @@ router.post(
       "La contraseña es obligatoria y mayor a 6 caracteres"
     ).isLength({ min: 6 }),
     check("dni").custom(dniExiste),
+    check("userName").custom(userNameExiste),
     validarCampos,
   ],
   postUser
